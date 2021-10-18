@@ -7,20 +7,25 @@ import com.badlogic.gdx.math.Vector2;
 import ru.eu.games.base.BaseScreen;
 
 public class MenuScreen extends BaseScreen {
-    private Texture background;
-    private Vector2 touch, v;
+    private Texture background, shuttle;
+    private Vector2 touch, v, dest;
+    private final int DEFAULT_WIDTH = 64;
+    private final int DEFAULT_HEIGHT = 64;
 
     @Override
     public void show() {
         super.show();
         background = new Texture("space.jpg");
+        shuttle = new Texture("ufo.png");
         touch = new Vector2(0,0);
         v = new Vector2();
+        dest = new Vector2(0,0);
     }
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         touch.set(screenX, Gdx.graphics.getHeight() - screenY);
+        v = touch.cpy().sub(dest.cpy()).nor();
         return super.touchDown(screenX, screenY, pointer, button);
     }
 
@@ -29,6 +34,8 @@ public class MenuScreen extends BaseScreen {
         super.render(delta);
         batch.begin();
         batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        batch.draw(shuttle, dest.x, dest.y, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+        if ((int) dest.x != touch.x && (int) dest.y != touch.y) dest.add(v);
         batch.end();
     }
 
@@ -36,5 +43,6 @@ public class MenuScreen extends BaseScreen {
     public void dispose() {
         super.dispose();
         background.dispose();
+        shuttle.dispose();
     }
 }
