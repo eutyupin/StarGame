@@ -9,8 +9,8 @@ import ru.eu.games.base.BaseScreen;
 public class MenuScreen extends BaseScreen {
     private Texture background, shuttle;
     private Vector2 touch, v, dest;
-    private final int DEFAULT_WIDTH = 64;
-    private final int DEFAULT_HEIGHT = 64;
+    private final int DEFAULT_WIDTH = 96;
+    private final int DEFAULT_HEIGHT = 96;
 
     @Override
     public void show() {
@@ -25,7 +25,7 @@ public class MenuScreen extends BaseScreen {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         touch.set(screenX, Gdx.graphics.getHeight() - screenY);
-        v = touch.cpy().sub(dest.cpy()).nor();
+        v = touch.cpy().sub(dest.cpy()).nor().setLength(5.0f);
         return super.touchDown(screenX, screenY, pointer, button);
     }
 
@@ -35,7 +35,11 @@ public class MenuScreen extends BaseScreen {
         batch.begin();
         batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.draw(shuttle, dest.x, dest.y, DEFAULT_WIDTH, DEFAULT_HEIGHT);
-        if ((int) dest.x != touch.x && (int) dest.y != touch.y) dest.add(v);
+        if (dest.dst(touch) <= v.len()) {
+            dest.set(touch);
+        } else {
+            dest.add(v);
+        }
         batch.end();
     }
 
