@@ -1,5 +1,7 @@
 package ru.eu.games.screen;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
@@ -7,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import ru.eu.games.base.BaseScreen;
 import ru.eu.games.math.Rect;
 import ru.eu.games.sprite.Background;
+import ru.eu.games.sprite.MainShip;
 import ru.eu.games.sprite.Star;
 
 public class GameScreen extends BaseScreen {
@@ -16,6 +19,7 @@ public class GameScreen extends BaseScreen {
     private TextureAtlas atlas;
     private Texture bg;
     private Background background;
+    private MainShip mainShip;
 
     private Star[] stars;
 
@@ -29,6 +33,7 @@ public class GameScreen extends BaseScreen {
         for (int i = 0; i < stars.length; i++) {
             stars[i] = new Star(atlas);
         }
+        mainShip = new MainShip(atlas);
     }
 
     @Override
@@ -36,6 +41,7 @@ public class GameScreen extends BaseScreen {
         super.render(delta);
         update(delta);
         draw();
+        isKeyPressed();
     }
 
     @Override
@@ -45,6 +51,7 @@ public class GameScreen extends BaseScreen {
         for (Star star : stars) {
             star.resize(worldBounds);
         }
+        mainShip.resize(worldBounds);
     }
 
     @Override
@@ -56,6 +63,7 @@ public class GameScreen extends BaseScreen {
 
     @Override
     public boolean keyDown(int keycode) {
+        mainShip.keyDown(keycode);
         return super.keyDown(keycode);
     }
 
@@ -66,12 +74,14 @@ public class GameScreen extends BaseScreen {
 
     @Override
     public boolean touchDown(Vector2 touch, int pointer, int button) {
+        mainShip.touchDown(touch, pointer,button);
         return super.touchDown(touch, pointer, button);
     }
 
     @Override
-    public boolean touchUp(Vector2 touch, int pointer, int button) {
-        return super.touchUp(touch, pointer, button);
+    public boolean touchDragged(Vector2 touch, int pointer) {
+        mainShip.touchDragged(touch,pointer);
+        return super.touchDragged(touch, pointer);
     }
 
     private void update(float delta) {
@@ -86,6 +96,14 @@ public class GameScreen extends BaseScreen {
         for (Star star : stars) {
             star.draw(batch);
         }
+        mainShip.draw(batch);
         batch.end();
     }
+
+    private void isKeyPressed() {
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) keyDown(Input.Keys.LEFT);
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) keyDown(Input.Keys.RIGHT);
+    }
+
+
 }
