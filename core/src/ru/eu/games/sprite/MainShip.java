@@ -73,13 +73,6 @@ public class MainShip extends Sprite {
             stop();
         }
 
-
-//        if (getLeft() > worldBounds.getRight()) {
-//            setRight(worldBounds.getLeft());
-//        }
-//        if (getRight() < worldBounds.getLeft()) {
-//            setLeft(worldBounds.getRight());
-//        }
     }
 
     @Override
@@ -178,7 +171,7 @@ public class MainShip extends Sprite {
     private void shoot() {
         Bullet bullet = bulletPool.obtain();
         bullet.set(this, bulletRegion, this.pos, bulletV, worldBounds, bulletHeight, damage);
-        shootSound.setVolume(shootSound.play(), 0.005f);
+        shootSound.setVolume(shootSound.play(), 0.001f);
     }
 
     private void autoShooting() {
@@ -187,7 +180,7 @@ public class MainShip extends Sprite {
             public void run() {
                     shoot();
             }
-        },50,300);
+        },0,200);
     }
 
 }
