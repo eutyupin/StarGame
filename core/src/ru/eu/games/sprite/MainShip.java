@@ -125,9 +125,6 @@ public class MainShip extends Sprite {
                 pressedRight = true;
                 moveRight();
                 break;
-//            case Input.Keys.UP:
-//                shoot();
-//                break;
         }
         return false;
     }
@@ -182,5 +179,7 @@ public class MainShip extends Sprite {
             }
         },0,200);
     }
+
+
 
 }
