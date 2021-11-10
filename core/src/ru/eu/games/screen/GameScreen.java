@@ -38,6 +38,7 @@ public class GameScreen extends BaseScreen {
     private BulletPool bulletPool;
     private ExplosionPool explosionPool;
     private EnemyPool enemyPool;
+    private boolean isGameOver = false;
 
     private MainShip mainShip;
 
@@ -45,18 +46,20 @@ public class GameScreen extends BaseScreen {
     private Sound laserSound;
     private Sound bulletSound;
     private Sound explosionSound;
+    private Sound gameOverSound;
 
     private EnemyEmitter enemyEmitter;
 
     @Override
     public void show() {
         super.show();
-        music = Gdx.audio.newMusic(Gdx.files.internal("sounds/music.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("sounds/music _asteroid.mp3"));
         music.setLooping(true);
         music.play();
-        laserSound = Gdx.audio.newSound(Gdx.files.internal("sounds/laser.wav"));
-        bulletSound = Gdx.audio.newSound(Gdx.files.internal("sounds/bullet.wav"));
-        explosionSound = Gdx.audio.newSound(Gdx.files.internal("sounds/explosion.wav"));
+        laserSound = Gdx.audio.newSound(Gdx.files.internal("sounds/quadlaser.mp3"));
+        bulletSound = Gdx.audio.newSound(Gdx.files.internal("sounds/xwingfire.mp3"));
+        explosionSound = Gdx.audio.newSound(Gdx.files.internal("sounds/explosion_sound.mp3"));
+        gameOverSound = Gdx.audio.newSound(Gdx.files.internal("sounds/hyperdrive_trouble.mp3"));
         atlas = new TextureAtlas("textures/mainAtlas.tpack");
         bg = new Texture("textures/bg.png");
         background = new Background(bg);
@@ -108,6 +111,7 @@ public class GameScreen extends BaseScreen {
         laserSound.dispose();
         bulletSound.dispose();
         explosionSound.dispose();
+        gameOverSound.dispose();
     }
 
     @Override
@@ -213,10 +217,16 @@ public class GameScreen extends BaseScreen {
         if (mainShip.isDestroyed()) mainShip.flushDestroy();
         mainShip.pos.x = 0;
         mainShip.resetHP(100);
+        isGameOver = false;
     }
 
     private void gameOverDraw(SpriteBatch batch) {
         gameOver.draw(batch);
         newGameButton.draw(batch);
+        if (!isGameOver) {
+            gameOverSound.play();
+            isGameOver = true;
+        }
+
     }
 }

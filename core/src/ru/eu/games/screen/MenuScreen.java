@@ -1,6 +1,8 @@
 package ru.eu.games.screen;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -25,6 +27,7 @@ public class MenuScreen extends BaseScreen {
     private Texture bg;
     private AnimatedShip animatedShip;
     private float animatedShipHeight = 0.1f;
+    private Sound falconSound;
 
 
     private Background background;
@@ -44,12 +47,14 @@ public class MenuScreen extends BaseScreen {
         bg = new Texture("textures/bg.png");
         background = new Background(bg);
         animatedShip = new AnimatedShip(atlas, worldBounds);
+        falconSound = Gdx.audio.newSound(Gdx.files.internal("sounds/falcon.mp3"));
         stars = new Star[STAR_COUNT];
         for (int i = 0; i < stars.length; i++) {
             stars[i] = new Star(atlas);
         }
         exitButton = new ExitButton(atlas);
         playButton = new PlayButton(atlas, game);
+        falconSound.play();
     }
 
     @Override
@@ -62,8 +67,6 @@ public class MenuScreen extends BaseScreen {
         exitButton.resize(worldBounds);
         playButton.resize(worldBounds);
         animatedShip.resize(worldBounds);
-//        animatedShip.setRight(worldBounds.getRight());
-//        animatedShip.setTop(worldBounds.getTop());
     }
 
     @Override
@@ -78,6 +81,7 @@ public class MenuScreen extends BaseScreen {
         super.dispose();
         bg.dispose();
         atlas.dispose();
+        falconSound.dispose();
     }
 
     @Override
@@ -115,6 +119,7 @@ public class MenuScreen extends BaseScreen {
 
     private void shipAnimateDraw(SpriteBatch batch) {
         animatedShip.draw(batch);
+
         if (animatedShip.pos.y > 0) {
             animatedShip.pos.sub(0.004f,0.008f);
             animatedShipHeight += 0.003f;
