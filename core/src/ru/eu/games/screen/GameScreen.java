@@ -95,7 +95,7 @@ public class GameScreen extends BaseScreen {
 
         mainShip = new MainShip(atlas, bulletPool, explosionPool, laserSound);
 
-        enemyEmitter = new EnemyEmitter(enemyPool, worldBounds, atlas);
+        enemyEmitter = new EnemyEmitter(enemyPool, worldBounds, atlas, mainShip);
         sbFrags = new StringBuilder();
         sbHP = new StringBuilder();
         sbLevel = new StringBuilder();

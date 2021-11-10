@@ -8,28 +8,31 @@ import ru.eu.games.math.Rect;
 import ru.eu.games.math.Rnd;
 import ru.eu.games.pool.EnemyPool;
 import ru.eu.games.sprite.EnemyShip;
+import ru.eu.games.sprite.MainShip;
 
 public class EnemyEmitter {
 
-    private static final float GENERATE_INTERVAL = 4f;
+    private static final float GENERATE_INTERVAL = 4.3f;
 
     private static final float ENEMY_SMALL_HEIGHT = 0.08f;
-    private static final float ENEMY_SMALL_BULLET_HEIGHT = 0.015f;
+    private static final float ENEMY_SMALL_BULLET_HEIGHT = 0.03f;
     private static final int ENEMY_SMALL_BULLET_DAMAGE = 1;
     private static final float ENEMY_SMALL_RELOAD_INTERVAL = 3f;
     private static final int ENEMY_SMALL_HP = 2;
 
     private static final float ENEMY_MEDIUM_HEIGHT = 0.15f;
-    private static final float ENEMY_MEDIUM_BULLET_HEIGHT = 0.03f;
+    private static final float ENEMY_MEDIUM_BULLET_HEIGHT = 0.05f;
     private static final int ENEMY_MEDIUM_BULLET_DAMAGE = 3;
     private static final float ENEMY_MEDIUM_RELOAD_INTERVAL = 4f;
     private static final int ENEMY_MEDIUM_HP = 5;
 
     private static final float ENEMY_BIG_HEIGHT = 0.25f;
-    private static final float ENEMY_BIG_BULLET_HEIGHT = 0.05f;
+    private static final float ENEMY_BIG_BULLET_HEIGHT = 0.07f;
     private static final int ENEMY_BIG_BULLET_DAMAGE = 5;
     private static final float ENEMY_BIG_RELOAD_INTERVAL = 1f;
     private static final int ENEMY_BIG_HP = 10;
+    private final MainShip mainShip;
+    private float scaleWeight;
 
     private final EnemyPool enemyPool;
     private final Rect worldBounds;
@@ -48,19 +51,25 @@ public class EnemyEmitter {
     private float generateTimer;
     private int level;
 
-    public EnemyEmitter(EnemyPool enemyPool, Rect worldBounds, TextureAtlas atlas) {
+    public EnemyEmitter(EnemyPool enemyPool, Rect worldBounds, TextureAtlas atlas, MainShip mainShip) {
         this.enemyPool = enemyPool;
         this.worldBounds = worldBounds;
         bulletRegion = atlas.findRegion("enemyBullet");
         enemySmallRegions = Regions.split(atlas.findRegion("enemyShip0"), 1, 2,2);
         enemyMediumRegions = Regions.split(atlas.findRegion("enemyShip1"), 1, 2,2);
         enemyBigRegions = Regions.split(atlas.findRegion("enemyShip2"), 1, 2,2);
+        this.mainShip = mainShip;
     }
 
     public void generate(float delta, int frags) {
+        int tempLevel = level;
         level = frags / 10 + 1;
+        if (level > tempLevel && mainShip.getReloadInterval() > 0.15f) {
+            mainShip.setReloadInterval(mainShip.getReloadInterval() - (scaleWeight / 20));
+        }
+        if (scaleWeight > 1.0f) scaleWeight = ((float) level) / 3;
         generateTimer += delta;
-        if (generateTimer >= GENERATE_INTERVAL - ((float) level / 3)) {
+        if (generateTimer >= GENERATE_INTERVAL - scaleWeight) {
             generateTimer = 0f;
             EnemyShip enemy = enemyPool.obtain();
             float type = (float) Math.random();

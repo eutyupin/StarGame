@@ -86,4 +86,16 @@ public class Ship extends Sprite {
         explosion.set(this.pos, getHeight());
     }
 
+    public int getHP() {
+        return hp;
+    }
+
+    public void setReloadInterval(float interval) {
+        this.reloadInterval = interval;
+    }
+
+    public float getReloadInterval() {
+        return reloadInterval;
+    }
+
 }

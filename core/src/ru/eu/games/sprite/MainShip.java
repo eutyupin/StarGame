@@ -12,13 +12,12 @@ import ru.eu.games.pool.ExplosionPool;
 
 public class MainShip extends Ship {
 
-    private static final float RELOAD_INTERVAL = 0.4f;
+    private static final float DEFAULT_RELOAD_INTERVAL = 0.4f;
 
     private static final float HEIGHT = 0.10f;
     private static final float BOTTOM_MARGIN = 0.05f;
     private static final int INVALID_POINTER = -1;
-    private static final int HP = 100;
-    private static final int DEFAULT_HP = 100;
+    private static final int DEFAULT_HP = 1000;
 
     private boolean pressedLeft;
     private boolean pressedRight;
@@ -39,7 +38,7 @@ public class MainShip extends Ship {
         this.hp = DEFAULT_HP;
         this.v = new Vector2();
         this.v0 = new Vector2(0.5f, 0);
-        this.reloadInterval = RELOAD_INTERVAL;
+        this.reloadInterval = DEFAULT_RELOAD_INTERVAL;
     }
 
     @Override
@@ -173,9 +172,6 @@ public class MainShip extends Ship {
         rightPointer = INVALID_POINTER;
         pressedLeft = false;
         pressedRight = false;
-    }
-
-    public int getHP() {
-        return hp;
+        setReloadInterval(DEFAULT_RELOAD_INTERVAL);
     }
 }
