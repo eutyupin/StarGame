@@ -10,7 +10,7 @@ public class AnimatedShip extends Sprite {
     private static final float SHIP_DEFAULT_PADDING = 0.03f;
     private static final float SHIP_DEFAULT_HEIGHT = 0.1f;
 
-    public AnimatedShip(TextureAtlas atlas, Rect worldBounds) {
+    public AnimatedShip(TextureAtlas atlas) {
         super(atlas.findRegion("ship"));
     }
 

@@ -15,6 +15,7 @@ import ru.eu.games.sprite.AnimatedShip;
 import ru.eu.games.sprite.Background;
 import ru.eu.games.sprite.ExitButton;
 import ru.eu.games.sprite.PlayButton;
+import ru.eu.games.sprite.Stamp;
 import ru.eu.games.sprite.Star;
 
 public class MenuScreen extends BaseScreen {
@@ -27,10 +28,15 @@ public class MenuScreen extends BaseScreen {
     private Texture bg;
     private AnimatedShip animatedShip;
     private float animatedShipHeight = 0.1f;
+    private float animatedStampHeight = 0.5f;
     private Sound falconSound;
+    private Vector2 shipDirection;
+    private boolean canButtonsDraw;
+
 
 
     private Background background;
+    private Stamp animatedStamp;
     private Star[] stars;
 
     private ExitButton exitButton;
@@ -38,15 +44,18 @@ public class MenuScreen extends BaseScreen {
 
     public MenuScreen(Game game) {
         this.game = game;
+        shipDirection = new Vector2(0.004f,0.008f);
+        canButtonsDraw = false;
     }
 
     @Override
     public void show() {
         super.show();
         atlas = new TextureAtlas("textures/menuAtlas.tpack");
-        bg = new Texture("textures/bg.png");
+        bg = new Texture("textures/bg.jpg");
+        animatedStamp = new Stamp(atlas, worldBounds);
         background = new Background(bg);
-        animatedShip = new AnimatedShip(atlas, worldBounds);
+        animatedShip = new AnimatedShip(atlas);
         falconSound = Gdx.audio.newSound(Gdx.files.internal("sounds/falcon.mp3"));
         stars = new Star[STAR_COUNT];
         for (int i = 0; i < stars.length; i++) {
@@ -67,6 +76,7 @@ public class MenuScreen extends BaseScreen {
         exitButton.resize(worldBounds);
         playButton.resize(worldBounds);
         animatedShip.resize(worldBounds);
+        animatedStamp.resize(worldBounds);
     }
 
     @Override
@@ -110,21 +120,30 @@ public class MenuScreen extends BaseScreen {
         for (Star star : stars) {
             star.draw(batch);
         }
-        exitButton.draw(batch);
-        playButton.draw(batch);
         shipAnimateDraw(batch);
+        stampAnimateDraw(batch);
+        if (canButtonsDraw) {
+            exitButton.draw(batch);
+            playButton.draw(batch);
+        }
         batch.end();
 
     }
 
     private void shipAnimateDraw(SpriteBatch batch) {
         animatedShip.draw(batch);
-
         if (animatedShip.pos.y > 0) {
-            animatedShip.pos.sub(0.004f,0.008f);
+            animatedShip.pos.sub(shipDirection);
             animatedShipHeight += 0.003f;
             animatedShip.setHeightProportion(animatedShipHeight);
         }
+    }
+    private void stampAnimateDraw(SpriteBatch batch) {
+            animatedStamp.draw(batch);
+            if (animatedStamp.getHeight() > 0.2f) {
+                animatedStampHeight -= 0.01f;
+                animatedStamp.setHeightProportion(animatedStampHeight);
+            } else canButtonsDraw = true;
     }
 
 }

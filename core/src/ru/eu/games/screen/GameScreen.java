@@ -61,7 +61,7 @@ public class GameScreen extends BaseScreen {
         explosionSound = Gdx.audio.newSound(Gdx.files.internal("sounds/explosion_sound.mp3"));
         gameOverSound = Gdx.audio.newSound(Gdx.files.internal("sounds/hyperdrive_trouble.mp3"));
         atlas = new TextureAtlas("textures/mainAtlas.tpack");
-        bg = new Texture("textures/bg.png");
+        bg = new Texture("textures/bg.jpg");
         background = new Background(bg);
         gameOver = new GameOver(atlas);
         newGameButton = new NewGameButton(atlas);
