@@ -17,14 +17,14 @@ ship
   orig: 537, 434
   offset: 0, 0
   index: -1
-playBtn
+exitBtn
   rotate: false
   xy: 1516, 314
   size: 419, 143
   orig: 419, 143
   offset: 0, 0
   index: -1
-quitBtn
+playBtn
   rotate: false
   xy: 1516, 169
   size: 419, 143

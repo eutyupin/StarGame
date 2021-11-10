@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import ru.eu.games.base.BaseButton;
 import ru.eu.games.math.Rect;
 import ru.eu.games.screen.GameScreen;
+import ru.eu.games.screen.MenuScreen;
 
 public class PlayButton extends BaseButton {
 
@@ -28,6 +29,6 @@ public class PlayButton extends BaseButton {
 
     @Override
     public void action() {
-        game.setScreen(new GameScreen());
+        game.setScreen(new GameScreen(game));
     }
 }

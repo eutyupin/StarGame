@@ -38,9 +38,16 @@ mainShip
   orig: 512, 256
   offset: 0, 0
   index: -1
-newGame
+exitBtn
   rotate: false
   xy: 1417, 582
+  size: 588, 163
+  orig: 588, 163
+  offset: 0, 0
+  index: -1
+newGame
+  rotate: false
+  xy: 1417, 417
   size: 588, 163
   orig: 588, 163
   offset: 0, 0
@@ -61,14 +68,14 @@ enemyBullet
   index: -1
 mainShipBullet
   rotate: false
-  xy: 1417, 516
+  xy: 1931, 939
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 star
   rotate: false
-  xy: 1931, 939
+  xy: 1417, 351
   size: 64, 64
   orig: 64, 64
   offset: 0, 0

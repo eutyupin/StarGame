@@ -10,7 +10,7 @@ import ru.eu.games.screen.GameScreen;
 public class NewGameButton extends BaseButton {
 
     private static final float HEIGHT = 0.1f;
-    private static final float PADDING = 0.1f;
+    private static final float MARGIN = 0.1f;
 
     public NewGameButton(TextureAtlas atlas) {
         super(atlas.findRegion("newGame"));
@@ -20,7 +20,7 @@ public class NewGameButton extends BaseButton {
     public void resize(Rect worldBounds) {
         setHeightProportion(HEIGHT);
         pos.set(worldBounds.pos);
-        setTop(worldBounds.pos.y - PADDING);
+        setTop(worldBounds.pos.y - MARGIN);
     }
 
     private void newGame(GameScreen gameScreen) {
@@ -49,5 +49,13 @@ public class NewGameButton extends BaseButton {
             newGame(gameScreen);
         }
         return super.touchUp(touch, pointer, button);
+    }
+
+    public static float getDefaultHEIGHT() {
+        return HEIGHT;
+    }
+
+    public static float getDefaultMARGIN() {
+        return MARGIN;
     }
 }

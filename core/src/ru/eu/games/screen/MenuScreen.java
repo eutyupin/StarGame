@@ -137,7 +137,7 @@ public class MenuScreen extends BaseScreen {
 
     private void shipAnimateDraw(SpriteBatch batch) {
         animatedShip.draw(batch);
-        if (animatedShip.pos.y > 0) {
+        if (animatedShip.pos.y > worldBounds.pos.y) {
             animatedShip.pos.sub(shipDirection);
             animatedShipHeight += 0.003f;
             animatedShip.setHeightProportion(animatedShipHeight);
@@ -150,5 +150,4 @@ public class MenuScreen extends BaseScreen {
             animatedStamp.setHeightProportion(animatedStampHeight);
         }
     }
-
 }
