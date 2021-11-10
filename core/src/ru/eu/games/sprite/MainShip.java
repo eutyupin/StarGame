@@ -12,9 +12,9 @@ import ru.eu.games.pool.ExplosionPool;
 
 public class MainShip extends Ship {
 
-    private static final float RELOAD_INTERVAL = 0.2f;
+    private static final float RELOAD_INTERVAL = 0.25f;
 
-    private static final float HEIGHT = 0.15f;
+    private static final float HEIGHT = 0.10f;
     private static final float BOTTOM_MARGIN = 0.05f;
     private static final int INVALID_POINTER = -1;
 
@@ -25,16 +25,16 @@ public class MainShip extends Ship {
     private int rightPointer = INVALID_POINTER;
 
     public MainShip(TextureAtlas atlas, BulletPool bulletPool, ExplosionPool explosionPool, Sound bulletSound) {
-        super(atlas.findRegion("main_ship"), 1, 2, 2);
+        super(atlas.findRegion("mainShip"), 1, 2, 2);
         this.bulletPool = bulletPool;
         this.explosionPool = explosionPool;
         this.bulletSound = bulletSound;
-        this.bulletRegion = atlas.findRegion("bulletMainShip");
+        this.bulletRegion = atlas.findRegion("mainShipBullet");
         this.bulletV = new Vector2(0, 0.5f);
         this.bulletPos = new Vector2();
         this.bulletHeight = 0.01f;
         this.damage = 1;
-        this.hp = 1;
+        this.hp = 10;
         this.v = new Vector2();
         this.v0 = new Vector2(0.5f, 0);
         this.reloadInterval = RELOAD_INTERVAL;

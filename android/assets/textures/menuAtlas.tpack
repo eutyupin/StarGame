@@ -5,22 +5,29 @@ filter: Nearest,Nearest
 repeat: none
 ship
   rotate: false
-  xy: 1, 0
+  xy: 1, 67
   size: 537, 434
   orig: 537, 434
   offset: 0, 0
   index: -1
 playBtn
   rotate: false
-  xy: 540, 291
+  xy: 540, 358
   size: 419, 143
   orig: 419, 143
   offset: 0, 0
   index: -1
 quitBtn
   rotate: false
-  xy: 540, 148
+  xy: 540, 213
   size: 419, 143
   orig: 419, 143
+  offset: 0, 0
+  index: -1
+star
+  rotate: false
+  xy: 1, 1
+  size: 64, 64
+  orig: 64, 64
   offset: 0, 0
   index: -1

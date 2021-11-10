@@ -2,11 +2,14 @@ package ru.eu.games.screen;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 import ru.eu.games.base.BaseScreen;
 import ru.eu.games.math.Rect;
+import ru.eu.games.sprite.AnimatedShip;
 import ru.eu.games.sprite.Background;
 import ru.eu.games.sprite.ExitButton;
 import ru.eu.games.sprite.PlayButton;
@@ -20,6 +23,7 @@ public class MenuScreen extends BaseScreen {
 
     private TextureAtlas atlas;
     private Texture bg;
+    private AnimatedShip animatedShip;
 
     private Background background;
     private Star[] stars;
@@ -37,6 +41,7 @@ public class MenuScreen extends BaseScreen {
         atlas = new TextureAtlas("textures/menuAtlas.tpack");
         bg = new Texture("textures/bg.png");
         background = new Background(bg);
+        animatedShip = new AnimatedShip(atlas, worldBounds);
         stars = new Star[STAR_COUNT];
         for (int i = 0; i < stars.length; i++) {
             stars[i] = new Star(atlas);
@@ -54,6 +59,9 @@ public class MenuScreen extends BaseScreen {
         }
         exitButton.resize(worldBounds);
         playButton.resize(worldBounds);
+        animatedShip.resize(worldBounds);
+//        animatedShip.setRight(worldBounds.getRight());
+//        animatedShip.setTop(worldBounds.getTop());
     }
 
     @Override
@@ -98,7 +106,17 @@ public class MenuScreen extends BaseScreen {
         }
         exitButton.draw(batch);
         playButton.draw(batch);
+        animatedShip.draw(batch);
         batch.end();
+
+    }
+
+    private void shipAnimateDraw(SpriteBatch batch) {
+
+        if (animatedShip.getLeft() != worldBounds.getLeft()) {
+            animatedShip.pos.add(0.01f,0.01f);
+        }
+
     }
 
 }

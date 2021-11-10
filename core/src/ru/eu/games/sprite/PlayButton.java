@@ -9,13 +9,13 @@ import ru.eu.games.screen.GameScreen;
 
 public class PlayButton extends BaseButton {
 
-    private static final float HEIGHT = 0.25f;
+    private static final float HEIGHT = 0.08f;
     private static final float PADDING = 0.03f;
 
     private final Game game;
 
     public PlayButton(TextureAtlas atlas, Game game) {
-        super(atlas.findRegion("btPlay"));
+        super(atlas.findRegion("playBtn"));
         this.game = game;
     }
 
