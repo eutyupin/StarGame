@@ -218,12 +218,14 @@ public class GameScreen extends BaseScreen {
         mainShip.pos.x = 0;
         mainShip.resetHP(100);
         isGameOver = false;
+        music.play();
     }
 
     private void gameOverDraw(SpriteBatch batch) {
         gameOver.draw(batch);
         newGameButton.draw(batch);
         if (!isGameOver) {
+            music.pause();
             gameOverSound.play();
             isGameOver = true;
         }

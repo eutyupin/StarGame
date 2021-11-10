@@ -5,70 +5,70 @@ filter: Nearest,Nearest
 repeat: none
 explosion
   rotate: false
-  xy: 1, 100
+  xy: 1, 103
   size: 900, 900
   orig: 900, 900
   offset: 0, 0
   index: -1
 enemyShip0
   rotate: false
-  xy: 903, 744
+  xy: 903, 747
   size: 512, 256
   orig: 512, 256
   offset: 0, 0
   index: -1
 enemyShip1
   rotate: false
-  xy: 903, 488
+  xy: 903, 489
   size: 512, 256
   orig: 512, 256
   offset: 0, 0
   index: -1
 enemyShip2
   rotate: false
-  xy: 1417, 744
+  xy: 1417, 747
   size: 512, 256
   orig: 512, 256
   offset: 0, 0
   index: -1
 mainShip
   rotate: false
-  xy: 903, 232
+  xy: 903, 231
   size: 512, 256
   orig: 512, 256
   offset: 0, 0
   index: -1
 newGame
   rotate: false
-  xy: 1417, 581
+  xy: 1417, 582
   size: 588, 163
   orig: 588, 163
   offset: 0, 0
   index: -1
 gameOver
   rotate: false
-  xy: 1, 0
+  xy: 1, 1
   size: 512, 100
   orig: 512, 100
   offset: 0, 0
   index: -1
 enemyBullet
   rotate: false
-  xy: 903, 168
+  xy: 903, 165
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 mainShipBullet
   rotate: false
-  xy: 1417, 517
+  xy: 1417, 516
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 star
   rotate: false
-  xy: 1931, 936
+  xy: 1931, 939
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
