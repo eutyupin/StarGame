@@ -8,8 +8,8 @@ import sun.security.krb5.Config;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = 500;
-		config.height = 700;
+		config.width = 450;
+		config.height = 800;
 		config.resizable = false;
 		new LwjglApplication(new StarGame(), config);
 	}
