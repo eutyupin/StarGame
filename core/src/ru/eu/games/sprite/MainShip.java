@@ -163,4 +163,13 @@ public class MainShip extends Ship {
         this.hp = hp;
     }
 
+    public void resetShip() {
+        resetHP(100);
+        pos.x = worldBounds.pos.x;
+        flushDestroy();
+        leftPointer = INVALID_POINTER;
+        rightPointer = INVALID_POINTER;
+        pressedLeft = false;
+        pressedRight = false;
+    }
 }

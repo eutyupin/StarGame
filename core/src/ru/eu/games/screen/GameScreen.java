@@ -41,6 +41,7 @@ public class GameScreen extends BaseScreen {
     private boolean isGameOver = false;
 
     private MainShip mainShip;
+    private int frags = 0;
 
     private Music music;
     private Sound laserSound;
@@ -128,15 +129,17 @@ public class GameScreen extends BaseScreen {
 
     @Override
     public boolean touchDown(Vector2 touch, int pointer, int button) {
-        mainShip.touchDown(touch, pointer, button);
-        newGameButton.touchDown(touch, pointer, button);
+        if (!mainShip.isDestroyed()) {
+            mainShip.touchDown(touch, pointer, button);
+        } else newGameButton.touchDown(touch, pointer, button);
         return false;
     }
 
     @Override
     public boolean touchUp(Vector2 touch, int pointer, int button) {
-        mainShip.touchUp(touch, pointer, button);
-        newGameButton.touchUp(touch, pointer, button, this);
+        if (!mainShip.isDestroyed()) {
+            mainShip.touchUp(touch, pointer, button);
+        } else newGameButton.touchUp(touch, pointer, button, this);
         return false;
     }
 
@@ -211,12 +214,12 @@ public class GameScreen extends BaseScreen {
         batch.end();
     }
 
-    public void setNewGame() {
-        bulletPool.dispose();
-        enemyPool.dispose();
-        if (mainShip.isDestroyed()) mainShip.flushDestroy();
-        mainShip.pos.x = 0;
-        mainShip.resetHP(100);
+    public void startNewGame() {
+        frags = 0;
+        bulletPool.freeAllActiveObjects();
+        enemyPool.freeAllActiveObjects();
+        explosionPool.freeAllActiveObjects();
+        mainShip.resetShip();
         isGameOver = false;
         music.play();
     }

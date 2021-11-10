@@ -96,15 +96,20 @@ public class MenuScreen extends BaseScreen {
 
     @Override
     public boolean touchDown(Vector2 touch, int pointer, int button) {
-        exitButton.touchDown(touch, pointer, button);
-        playButton.touchDown(touch, pointer, button);
+        if (canButtonsDraw) {
+            exitButton.touchDown(touch, pointer, button);
+            playButton.touchDown(touch, pointer, button);
+        }
         return false;
     }
 
     @Override
     public boolean touchUp(Vector2 touch, int pointer, int button) {
-        exitButton.touchUp(touch, pointer, button);
-        playButton.touchUp(touch, pointer, button);
+        if (canButtonsDraw) {
+            exitButton.touchUp(touch, pointer, button);
+            playButton.touchUp(touch, pointer, button);
+        }
+
         return false;
     }
 
@@ -136,14 +141,14 @@ public class MenuScreen extends BaseScreen {
             animatedShip.pos.sub(shipDirection);
             animatedShipHeight += 0.003f;
             animatedShip.setHeightProportion(animatedShipHeight);
-        }
+        } else canButtonsDraw = true;
     }
     private void stampAnimateDraw(SpriteBatch batch) {
-            animatedStamp.draw(batch);
-            if (animatedStamp.getHeight() > 0.2f) {
-                animatedStampHeight -= 0.01f;
-                animatedStamp.setHeightProportion(animatedStampHeight);
-            } else canButtonsDraw = true;
+        animatedStamp.draw(batch);
+        if (animatedStamp.getHeight() > 0.2f) {
+            animatedStampHeight -= 0.01f;
+            animatedStamp.setHeightProportion(animatedStampHeight);
+        }
     }
 
 }

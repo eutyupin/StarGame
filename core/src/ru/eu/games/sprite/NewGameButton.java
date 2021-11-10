@@ -24,7 +24,7 @@ public class NewGameButton extends BaseButton {
     }
 
     private void newGame(GameScreen gameScreen) {
-        gameScreen.setNewGame();
+        gameScreen.startNewGame();
     }
 
     private void setPressed() {
