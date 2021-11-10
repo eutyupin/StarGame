@@ -10,7 +10,7 @@ import ru.eu.games.screen.GameScreen;
 public class PlayButton extends BaseButton {
 
     private static final float HEIGHT = 0.08f;
-    private static final float PADDING = 0.03f;
+    private static final float PADDING = 0.04f;
 
     private final Game game;
 

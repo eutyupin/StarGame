@@ -12,7 +12,7 @@ import ru.eu.games.pool.ExplosionPool;
 
 public class MainShip extends Ship {
 
-    private static final float RELOAD_INTERVAL = 0.25f;
+    private static final float RELOAD_INTERVAL = 0.3f;
 
     private static final float HEIGHT = 0.10f;
     private static final float BOTTOM_MARGIN = 0.05f;
@@ -34,7 +34,7 @@ public class MainShip extends Ship {
         this.bulletPos = new Vector2();
         this.bulletHeight = 0.01f;
         this.damage = 1;
-        this.hp = 10;
+        this.hp = 100;
         this.v = new Vector2();
         this.v0 = new Vector2(0.5f, 0);
         this.reloadInterval = RELOAD_INTERVAL;

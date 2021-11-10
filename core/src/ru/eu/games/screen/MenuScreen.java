@@ -24,6 +24,8 @@ public class MenuScreen extends BaseScreen {
     private TextureAtlas atlas;
     private Texture bg;
     private AnimatedShip animatedShip;
+    private float animatedShipHeight = 0.1f;
+
 
     private Background background;
     private Star[] stars;
@@ -106,17 +108,18 @@ public class MenuScreen extends BaseScreen {
         }
         exitButton.draw(batch);
         playButton.draw(batch);
-        animatedShip.draw(batch);
+        shipAnimateDraw(batch);
         batch.end();
 
     }
 
     private void shipAnimateDraw(SpriteBatch batch) {
-
-        if (animatedShip.getLeft() != worldBounds.getLeft()) {
-            animatedShip.pos.add(0.01f,0.01f);
+        animatedShip.draw(batch);
+        if (animatedShip.pos.y > 0) {
+            animatedShip.pos.sub(0.004f,0.008f);
+            animatedShipHeight += 0.003f;
+            animatedShip.setHeightProportion(animatedShipHeight);
         }
-
     }
 
 }

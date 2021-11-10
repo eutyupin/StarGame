@@ -7,8 +7,8 @@ import ru.eu.games.math.Rect;
 
 public class AnimatedShip extends Sprite {
     private Rect worldBounds;
-    private static final float SHIP_DEFAULT_HEIGHT = 0.1f;
     private static final float SHIP_DEFAULT_PADDING = 0.03f;
+    private static final float SHIP_DEFAULT_HEIGHT = 0.1f;
 
     public AnimatedShip(TextureAtlas atlas, Rect worldBounds) {
         super(atlas.findRegion("ship"));
