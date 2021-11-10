@@ -12,7 +12,7 @@ import ru.eu.games.pool.ExplosionPool;
 
 public class MainShip extends Ship {
 
-    private static final float RELOAD_INTERVAL = 0.3f;
+    private static final float RELOAD_INTERVAL = 0.35f;
 
     private static final float HEIGHT = 0.10f;
     private static final float BOTTOM_MARGIN = 0.05f;
@@ -32,7 +32,7 @@ public class MainShip extends Ship {
         this.bulletRegion = atlas.findRegion("mainShipBullet");
         this.bulletV = new Vector2(0, 0.5f);
         this.bulletPos = new Vector2();
-        this.bulletHeight = 0.01f;
+        this.bulletHeight = 0.02f;
         this.damage = 1;
         this.hp = 100;
         this.v = new Vector2();
