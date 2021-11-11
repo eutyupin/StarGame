@@ -63,7 +63,6 @@ public class MenuScreen extends BaseScreen {
         }
         exitButton = new ExitButton(atlas);
         playButton = new PlayButton(atlas, game);
-        falconSound.play();
     }
 
     @Override
@@ -77,6 +76,7 @@ public class MenuScreen extends BaseScreen {
         playButton.resize(worldBounds);
         animatedShip.resize(worldBounds);
         animatedStamp.resize(worldBounds);
+        falconSound.play();
     }
 
     @Override
