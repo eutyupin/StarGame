@@ -2,8 +2,7 @@ package ru.eu.games.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import ru.eu.games.StarGame;
-import sun.security.krb5.Config;
+import ru.eu.games.StarFighter;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
@@ -11,6 +10,6 @@ public class DesktopLauncher {
 		config.width = 450;
 		config.height = 800;
 		config.resizable = false;
-		new LwjglApplication(new StarGame(), config);
+		new LwjglApplication(new StarFighter(), config);
 	}
 }
