@@ -245,7 +245,12 @@ public class GameScreen extends BaseScreen {
         }
         explosionPool.drawActiveObjects(batch);
         printInfo();
+        hpLevelUp();
         batch.end();
+    }
+
+    private void hpLevelUp() {
+        if (frags % 50 == 0) mainShip.resetHP(100);
     }
 
     private void printInfo() {
