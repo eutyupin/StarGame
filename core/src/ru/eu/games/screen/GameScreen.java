@@ -62,6 +62,8 @@ public class GameScreen extends BaseScreen {
     private Sound bulletSound;
     private Sound explosionSound;
     private Sound gameOverSound;
+    private Sound hpUpSound;
+    private boolean canPlayHP = true;
 
     private EnemyEmitter enemyEmitter;
 
@@ -79,6 +81,7 @@ public class GameScreen extends BaseScreen {
         bulletSound = Gdx.audio.newSound(Gdx.files.internal("sounds/xwingfire.mp3"));
         explosionSound = Gdx.audio.newSound(Gdx.files.internal("sounds/explosion_sound.mp3"));
         gameOverSound = Gdx.audio.newSound(Gdx.files.internal("sounds/hyperdrive_trouble.mp3"));
+        hpUpSound = Gdx.audio.newSound(Gdx.files.internal("sounds/hp.mp3"));
         atlas = new TextureAtlas("textures/mainAtlas.tpack");
         bg = new Texture("textures/bg.jpg");
         background = new Background(bg);
@@ -138,6 +141,7 @@ public class GameScreen extends BaseScreen {
         bulletSound.dispose();
         explosionSound.dispose();
         gameOverSound.dispose();
+        hpUpSound.dispose();
         font.dispose();
     }
 
@@ -250,7 +254,15 @@ public class GameScreen extends BaseScreen {
     }
 
     private void hpLevelUp() {
-        if (frags % 50 == 0) mainShip.resetHP(100);
+        if (frags % 50 == 0 && frags > 0) {
+            mainShip.resetHP(100);
+            if (canPlayHP) {
+                hpUpSound.play();
+                canPlayHP = false;
+            }
+            return;
+        }
+        canPlayHP = true;
     }
 
     private void printInfo() {
